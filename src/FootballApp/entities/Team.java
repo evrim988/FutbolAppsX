@@ -1,9 +1,12 @@
-package entities;
+package FootballApp.entities;
+
+import FootballApp.databases.PlayerDB;
+import FootballApp.databases.TeamDB;
 
 import java.util.List;
 
 public class Team extends BaseEntity {
-	private static Integer teamCounter;
+	private static Integer teamCounter=0;
 	
 	private String teamName;
 	private Integer currentLeagueID;
@@ -16,7 +19,7 @@ public class Team extends BaseEntity {
 	}
 	
 	public Team(String teamName, Integer currentLeagueID, List<Integer> teamPlayerIDList, String teamLocation, String stadiumName) {
-		super(teamCounter++);
+		super(++teamCounter);
 		this.teamName = teamName;
 		this.currentLeagueID = currentLeagueID;
 		this.teamPlayerIDList = teamPlayerIDList;
@@ -66,6 +69,12 @@ public class Team extends BaseEntity {
 	
 	@Override
 	public String toString() {
-		return "Team{" + "id=" + getId() + ", teamName='" + getTeamName() + '\'' + ", currentLeagueID=" + getCurrentLeagueID() + ", teamPlayerIDList=" + getTeamPlayerIDList() + ", teamLocation='" + getTeamLocation() + '\'' + ", stadiumName='" + getStadiumName() + '\'' + '}';
+		return "Team "
+				+ "ID: " + getId()
+				+ ", Name=" + getTeamName()
+				+ ", TeamLeagueID=" + getCurrentLeagueID()
+				+ ", Location=" + getTeamLocation()
+				+ ", Stadium=" + getStadiumName()
+				+ ", TeamPlayersIDList=" + getTeamPlayerIDList();
 	}
 }

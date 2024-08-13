@@ -1,4 +1,4 @@
-package entities;
+package FootballApp.entities;
 
 public class Person extends BaseEntity {
 	private static Integer personCounter=0;

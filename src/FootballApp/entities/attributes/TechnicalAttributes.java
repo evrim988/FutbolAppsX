@@ -1,9 +1,9 @@
-package entities.attributes;
+package FootballApp.entities.attributes;
 
-import entities.BaseEntity;
+import FootballApp.entities.BaseEntity;
 
 public class TechnicalAttributes extends BaseEntity implements PlayerAttributes {
-	private static Integer technicalCount;
+	private static Integer technicalCount=0;
 	
 	private Integer finishing;
 	private Integer pass;
@@ -58,5 +58,15 @@ public class TechnicalAttributes extends BaseEntity implements PlayerAttributes 
 	
 	public void setShotPower(Integer shotPower) {
 		this.shotPower = shotPower;
+	}
+	
+	@Override
+	public String toString() {
+		return "TechnicalAttributes: "
+				+ "Finishing=" + getFinishing()
+				+ ", Pass=" + getPass()
+				+ ", Dribbling=" + getDribbling()
+				+ ", Tackle=" + getTackle()
+				+ ", ShotPower=" + getShotPower();
 	}
 }

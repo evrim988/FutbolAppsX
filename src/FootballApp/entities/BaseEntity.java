@@ -1,4 +1,4 @@
-package entities;
+package FootballApp.entities;
 
 public class BaseEntity {
 	protected final Integer id;

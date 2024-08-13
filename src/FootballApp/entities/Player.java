@@ -1,7 +1,13 @@
-package entities;
+package FootballApp.entities;
 
-import entities.attributes.TechnicalAttributes;
-import enums.EPosition;
+import FootballApp.databases.TeamDB;
+import FootballApp.entities.attributes.TechnicalAttributes;
+import FootballApp.enums.EPosition;
+import FootballApp.utility.DatabaseManager;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 public class Player extends Person {
 	private static Integer playerCounter=0;
@@ -11,27 +17,33 @@ public class Player extends Person {
 	private Double playerValue;
 	private Double playerWage;
 	private EPosition playersPosition;
-	private Integer technicalAttributesID;
+	private TechnicalAttributes playerTechnicalAttributes;
 	
 	public Player() {
 		super(++playerCounter);
 	}
 	
-	public Player(String name, Integer age, String nationality,Integer technicalAttributesID,
+	public Player(String name, Integer age, String nationality,TechnicalAttributes technicalAttributes,
 	              Integer teamID, Double playerValue, Double playerWage, EPosition EplayersPosition) {
 		super(++playerCounter,name,age,nationality);
-//		this.playerOverallRating = playerOverallRating(technicalAttributesID);
 		this.currentTeamID=teamID;
 		this.playerValue = playerValue;
 		this.playerWage = playerWage;
 		this.playersPosition = EplayersPosition;
+		this.playerTechnicalAttributes = technicalAttributes;
+		this.playerOverallRating=calculateOverallRating();
 	}
 	
-	private Integer playerOverallRating(TechnicalAttributes tec) {
-		this.playerOverallRating = (tec.getDribbling()+ tec.getFinishing()+tec.getPass()+tec.getTackle()
-				+tec.getShotPower())/5;
+	private Integer calculateOverallRating() {
+		this.playerOverallRating = (playerTechnicalAttributes.getDribbling()+ playerTechnicalAttributes.getFinishing()
+				+playerTechnicalAttributes.getPass()+playerTechnicalAttributes.getTackle()+playerTechnicalAttributes.getShotPower())/5;
 		return playerOverallRating;
 	}
+	
+//	public String getCurrentTeamName(Integer currentTeamID) {
+//		Optional<Team> team = db.findByID(currentTeamID);
+//		return team.map(Team::getTeamName).orElse("Free Agent");
+//	}
 	
 	public Integer getPlayerOverallRating() {
 		return playerOverallRating;
@@ -75,6 +87,17 @@ public class Player extends Person {
 	
 	@Override
 	public String toString() {
-		return "Player{" + "id=" + getId() + ", name='" + getName() + '\'' + ", age=" + getAge() + ", nationality='" + getNationality() + '\'' + ", playerOverallRating=" + getPlayerOverallRating() + ", currentTeamID=" + currentTeamID + ", playerValue=" + getPlayerValue() + ", playerWage=" + getPlayerWage() + ", playersPosition=" + getPlayersPosition() + ", technicalAttributesID=" + technicalAttributesID + '}';
+		return "Player"
+				+ " ID: " + getId()
+				+ ", Name=" + getName()
+				+ ", Age=" + getAge()
+				+ ", Nationality=" + getNationality()
+				+ ", CurrentTeamID=" + currentTeamID
+//				+ ", CurrentTeamName=" + getCurrentTeamName(currentTeamID)
+				+ ", Position=" + getPlayersPosition()
+				+ ", OverallRating=" + getPlayerOverallRating()
+				+ ", Value=" + getPlayerValue()
+				+ ", Wage=" + getPlayerWage()
+				+ ", " + playerTechnicalAttributes;
 	}
 }

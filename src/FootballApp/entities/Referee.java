@@ -1,4 +1,4 @@
-package entities;
+package FootballApp.entities;
 
 public class Referee extends Person {
 	private static Integer refereeCounter=0;

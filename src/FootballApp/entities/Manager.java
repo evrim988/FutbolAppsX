@@ -1,4 +1,4 @@
-package entities;
+package FootballApp.entities;
 
 public class Manager extends Person {
 	private static Integer managerCounter=0;

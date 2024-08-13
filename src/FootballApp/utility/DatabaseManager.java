@@ -1,6 +1,6 @@
-package utility;
+package FootballApp.utility;
 
-import entities.BaseEntity;
+import FootballApp.entities.BaseEntity;
 
 import java.util.ArrayList;
 import java.util.List;

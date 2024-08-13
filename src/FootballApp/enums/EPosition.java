@@ -1,4 +1,4 @@
-package enums;
+package FootballApp.enums;
 
 public enum EPosition {
 	GK,

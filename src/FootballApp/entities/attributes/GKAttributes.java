@@ -1,4 +1,4 @@
-package entities.attributes;
+package FootballApp.entities.attributes;
 
 public class GKAttributes implements PlayerAttributes {
 	private Integer overallGK;

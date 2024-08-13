@@ -1,0 +1,28 @@
+package FootballApp.databases;
+
+import FootballApp.entities.Player;
+import FootballApp.entities.Team;
+import FootballApp.utility.DatabaseManager;
+
+import java.util.Optional;
+
+public class TeamDB extends DatabaseManager<Team> {
+	
+	public Optional<Team> findByID(Integer teamID) {
+		for (Team team : veriListesi) {
+			if (team.getId()==teamID) {
+				return Optional.of(team);
+			}
+		}
+		return Optional.empty();
+	}
+	
+	public Optional<Team> findByName(String teamName) {
+		for (Team team : veriListesi) {
+			if (team.getTeamName().equals(teamName)) {
+				return Optional.of(team);
+			}
+		}
+		return Optional.empty();
+	}
+}
