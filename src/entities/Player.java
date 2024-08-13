@@ -3,12 +3,9 @@ package entities;
 import entities.attributes.TechnicalAttributes;
 import enums.EPosition;
 
-public class Player extends BaseEntity {
-	private static Integer playerCounter;
+public class Player extends Person {
+	private static Integer playerCounter=0;
 	
-	private String playerName;
-	private Integer playerAge;
-	private String playerNationality;
 	private Integer playerOverallRating;
 	private Integer currentTeamID;
 	private Double playerValue;
@@ -20,46 +17,20 @@ public class Player extends BaseEntity {
 		super(++playerCounter);
 	}
 	
-	public Player(String playerName, Integer technicalAttributesID, Integer playerAge, String playerNationality, Integer teamID, Double playerValue, Double playerWage, EPosition EplayersPosition) {
-		super(++playerCounter);
-		this.playerName = playerName;
-		this.playerAge = playerAge;
-		this.playerNationality = playerNationality;
+	public Player(String name, Integer age, String nationality,Integer technicalAttributesID,
+	              Integer teamID, Double playerValue, Double playerWage, EPosition EplayersPosition) {
+		super(++playerCounter,name,age,nationality);
 //		this.playerOverallRating = playerOverallRating(technicalAttributesID);
 		this.currentTeamID=teamID;
 		this.playerValue = playerValue;
 		this.playerWage = playerWage;
-		this.playersPosition = playersPosition;
+		this.playersPosition = EplayersPosition;
 	}
 	
 	private Integer playerOverallRating(TechnicalAttributes tec) {
 		this.playerOverallRating = (tec.getDribbling()+ tec.getFinishing()+tec.getPass()+tec.getTackle()
 				+tec.getShotPower())/5;
 		return playerOverallRating;
-	}
-	
-	public String getPlayerName() {
-		return playerName;
-	}
-	
-	public void setPlayerName(String playerName) {
-		this.playerName = playerName;
-	}
-	
-	public Integer getPlayerAge() {
-		return playerAge;
-	}
-	
-	public void setPlayerAge(Integer playerAge) {
-		this.playerAge = playerAge;
-	}
-	
-	public String getPlayerNationality() {
-		return playerNationality;
-	}
-	
-	public void setPlayerNationality(String playerNationality) {
-		this.playerNationality = playerNationality;
 	}
 	
 	public Integer getPlayerOverallRating() {
@@ -104,6 +75,6 @@ public class Player extends BaseEntity {
 	
 	@Override
 	public String toString() {
-		return "Player{" + "id=" + getId() + ", playerName='" + getPlayerName() + '\'' + ", playerAge=" + getPlayerAge() + ", playerNationality='" + getPlayerNationality() + '\'' + ", playerOverallRating=" + getPlayerOverallRating() + ", playersCurrentClub=" + getPlayersCurrentClub() + ", playerValue=" + getPlayerValue() + ", playerWage=" + getPlayerWage() + ", playersPosition=" + getPlayersPosition() + '}';
+		return "Player{" + "id=" + getId() + ", name='" + getName() + '\'' + ", age=" + getAge() + ", nationality='" + getNationality() + '\'' + ", playerOverallRating=" + getPlayerOverallRating() + ", currentTeamID=" + currentTeamID + ", playerValue=" + getPlayerValue() + ", playerWage=" + getPlayerWage() + ", playersPosition=" + getPlayersPosition() + ", technicalAttributesID=" + technicalAttributesID + '}';
 	}
 }
