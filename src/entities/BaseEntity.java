@@ -1,7 +1,7 @@
 package entities;
 
 public class BaseEntity {
-	protected final  int id;
+	protected final int id;
 	
 	public BaseEntity(int id) {
 		this.id = id;

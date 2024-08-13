@@ -19,11 +19,11 @@ public class DatabaseManager<T extends BaseEntity> implements ICRUD<T> {
 	}
 	
 	@Override
-	public Optional<List<T>> saveAll(List<T> t) {
+	public List<T> saveAll(List<T> t) {
 		if (veriListesi.addAll(t)) {
-			return Optional.of(t);
+			return t;
 		} else {
-			return Optional.empty();
+			return new ArrayList<>();
 		}
 	}
 	
@@ -46,13 +46,13 @@ public class DatabaseManager<T extends BaseEntity> implements ICRUD<T> {
 		}
 	}
 	
-//	@Override
-//	public T findByID(int id) {
-//		for (T entity : veriListesi ){
-//			if(entity.getId() == id){
-//				return entity;
-//			}
-//		}
-//		return null;
-//	}
+	@Override
+	public Optional<T> findByID(int id) {
+		for (T entity : veriListesi ){
+			if(entity.getId() == id){
+				return Optional.of(entity);
+			}
+		}
+		return Optional.empty();
+	}
 }
