@@ -1,8 +1,5 @@
 package FootballApp.entities;
 
-import FootballApp.databases.PlayerDB;
-import FootballApp.databases.TeamDB;
-
 import java.util.List;
 
 public class Team extends BaseEntity {
@@ -35,6 +32,7 @@ public class Team extends BaseEntity {
 	public String getTeamName() {
 		return teamName;
 	}
+	
 	
 	public void setTeamName(String teamName) {
 		this.teamName = teamName;
@@ -99,5 +97,6 @@ public class Team extends BaseEntity {
 				+ ", TransferBudget=" + getTransferBudget()
 				+ ", WageBudget=" + getWageBudget()
 				+ ", TeamPlayersIDList=" + getTeamPlayerIDList();
+		
 	}
 }

@@ -4,13 +4,14 @@ import FootballApp.entities.Player;
 import FootballApp.entities.Team;
 import FootballApp.utility.DatabaseManager;
 
+import java.util.List;
 import java.util.Optional;
 
 public class TeamDB extends DatabaseManager<Team> {
 	
 	public Optional<Team> findByID(Integer teamID) {
 		for (Team team : veriListesi) {
-			if (team.getId()==teamID) {
+			if (team.getId() == teamID) {
 				return Optional.of(team);
 			}
 		}
@@ -24,5 +25,9 @@ public class TeamDB extends DatabaseManager<Team> {
 			}
 		}
 		return Optional.empty();
+	}
+	
+	public List<Team> listAll() {
+		return veriListesi;
 	}
 }
