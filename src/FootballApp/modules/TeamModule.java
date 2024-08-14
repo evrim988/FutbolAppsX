@@ -44,27 +44,43 @@ public class TeamModule {
 		switch (userInput) {
 			case 1: {
 				System.out.println("List of Teams");
-				System.out.println(listAllTeams());
+				List<Team> teams = teamDB.listAll();
+				teams.stream().map(team -> "TeamID: "+team.getId()+ " TeamName: "+team.getTeamName()).forEach(team-> {
+					System.out.println(team);
+				});
 				break;
 			}
 			
 			case 2: {
 				System.out.println("Enter Team ID: ");
 				Integer teamID = sc.nextInt();
-				Optional<Team> foundTeam = findTeamByID(teamID);
-				foundTeam.ifPresent(System.out::println);
+				Optional<Team> teamByID = teamDB.findByID(teamID);
+				if (teamByID.isPresent()) {
+					System.out.println(teamByID.get());
+				}
 				break;
 			}
 			case 3: {
 				System.out.println("Enter the Team Name: ");
 				String teamName = sc.nextLine();
-				List<Team> teamByName = findTeamByName(teamName);
-				System.out.println(teamByName);
+				List<Team> byTeamName = teamDB.findByTeamName(teamName);
+				if (byTeamName.isEmpty()) {
+					System.out.println("Team not found!");
+				}
+				byTeamName.stream().map(team -> "TeamID: "+team.getId()+ " TeamName: "+team.getTeamName()).forEach(team-> {
+					System.out.println(team);
+				});
+				System.out.println("Enter the Team ID that you want to see by details: ");
+				Integer teamID = sc.nextInt();
+				Optional<Team> teamByID = teamDB.findByID(teamID);
+				if (teamByID.isPresent()) {
+					System.out.println(teamByID.get());
+				}
 				break;
 			}
 		
 			case 0 : {
-				System.out.println("Please have nice day!");
+				System.out.println("Have nice day!");
 				break;
 			}
 			default:
@@ -72,25 +88,6 @@ public class TeamModule {
 		}
 	}
 	
-	private static Optional<Team> findTeamByID(Integer teamID) {
-		
-		Optional<Team> foundTeam = teamDB.findByID(teamID);
-		if (foundTeam.isPresent()) {
-			return Optional.of(foundTeam.get());
-		}
-		return Optional.empty();
-	}
-	
-	private static List<Team> listAllTeams() {
-		
-		return teamDB.listAll();
-	}
-	
-	private static List<Team> findTeamByName(String teamName) {
-		List<Team> byTeamName = teamDB.findByTeamName(teamName);
-		
-		return byTeamName;
-	}
 	
 	public static void addTeams(TeamDB teamDB){
 		Team team1 = new Team("Fenerbahce",1,new ArrayList<>(),"Istanbul","Sukru Saracoglu Stadyumu",15_000_000.0,20_000_000.0);
@@ -112,7 +109,7 @@ public class TeamModule {
 		Team team17= new Team("Hatayspor",1,new ArrayList<>(),"Hatay","Mersin Stadyumu",2_000_000d,200_000d);
 		Team team18= new Team("Goztepe",1,new ArrayList<>(),"Izmir","Gursel Aksel Stadyumu",2_500_000d,250_000d);
 		Team team19= new Team("Bodrum FK",1,new ArrayList<>(),"Mugla","Bodrum Ilce Stadi",1_500_000d,120_000d);
-		Team team20= new Team("MKE Ankaragucu",1,new ArrayList<>(),"Ankara","Eryaman Stadyumu",1_700_000d,140_000d);
+		Team team20= new Team("MKE Ankaragucu",1,new ArrayList<>(),"Ankara","Eryaman Stadyumu",1_700_000d,100_000d);
 		teamDB.save(team1);
 		teamDB.save(team2);
 		teamDB.save(team3);

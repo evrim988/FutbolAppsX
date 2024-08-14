@@ -99,4 +99,13 @@ public class Team extends BaseEntity {
 				+ ", TeamPlayersIDList=" + getTeamPlayerIDList();
 		
 	}
+	
+//	public String toString(boolean string) {
+//		if(string){
+//			return this.getId()+" "+this.getTeamName();
+//		}
+//		else{
+//			return this.getId()+" "+this.getTeamName()+" "+this.getCurrentLeagueID();
+//		}
+//	}
 }
