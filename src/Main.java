@@ -14,8 +14,8 @@ public class Main {
 	static PlayerDB playerDB = new PlayerDB();
 	static TeamDB teamDB = new TeamDB();
 	public static void main(String[] args) {
-		Team team1=new Team("Galatasaray",1,new ArrayList<>(),"Istanbul","RamsPark");
-		Team team2=new Team("Fenerbahce",1,new ArrayList<>(),"Istanbul","Kadikoy");
+		Team team1=new Team("Galatasaray",1,new ArrayList<>(),"Istanbul","RamsPark",90d,5d);
+		Team team2=new Team("Fenerbahce",1,new ArrayList<>(),"Istanbul","Kadikoy",100d,10d);
 		teamDB.save(team1);
 		teamDB.save(team2);
 		
