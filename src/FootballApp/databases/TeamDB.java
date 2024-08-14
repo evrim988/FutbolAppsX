@@ -4,6 +4,7 @@ import FootballApp.entities.Player;
 import FootballApp.entities.Team;
 import FootballApp.utility.DatabaseManager;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,5 +30,16 @@ public class TeamDB extends DatabaseManager<Team> {
 	
 	public List<Team> listAll() {
 		return veriListesi;
+	}
+	
+	public List<Team> findByTeamName(String teamName) {
+		List<Team> foundTeams = new ArrayList<>();
+		for (Team team : veriListesi) {
+			if (team.getTeamName().contains(teamName)) {
+				foundTeams.add(team);
+				
+			}
+		}
+		return foundTeams;
 	}
 }

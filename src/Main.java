@@ -19,8 +19,6 @@ public class Main {
 	static ManagerDB managerDB = new ManagerDB();
 	public static void main(String[] args) {
 		
-		TeamModule.addTeams(teamDB);
-		
 		TeamModule.teamMenu();
 	}
 }

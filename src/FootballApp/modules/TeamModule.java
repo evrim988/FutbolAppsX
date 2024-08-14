@@ -5,15 +5,17 @@ import FootballApp.databases.TeamDB;
 import FootballApp.entities.Manager;
 import FootballApp.entities.Team;
 import FootballApp.utility.DatabaseManager;
+import com.sun.tools.javac.Main;
 
 import java.util.*;
 
 public class TeamModule {
-	static Scanner sc = new Scanner(System.in);
 	static TeamDB teamDB = new TeamDB();
+	static Scanner sc = new Scanner(System.in);
 	
 	public static void teamMenu() {
 		int userInput = -1;
+		TeamModule.addTeams(teamDB);
 		System.out.println("\n---Welcome---");
 		do {
 			System.out.println("1-List of Teams");
@@ -42,7 +44,7 @@ public class TeamModule {
 		switch (userInput) {
 			case 1: {
 				System.out.println("List of Teams");
-				listAllTeams();
+				System.out.println(listAllTeams());
 				break;
 			}
 			
@@ -53,13 +55,13 @@ public class TeamModule {
 				foundTeam.ifPresent(System.out::println);
 				break;
 			}
-//			case 3: {
-//				User user = userLogin();
-//				if (user != null){
-//					userInterface(user); // kullanıcı başarılı bir şekilde giriş yaparsa bu menü çıkacak
-//				}
-//				break;
-//			}
+			case 3: {
+				System.out.println("Enter the Team Name: ");
+				String teamName = sc.nextLine();
+				List<Team> teamByName = findTeamByName(teamName);
+				System.out.println(teamByName);
+				break;
+			}
 		
 			case 0 : {
 				System.out.println("Please have nice day!");
@@ -80,7 +82,14 @@ public class TeamModule {
 	}
 	
 	private static List<Team> listAllTeams() {
+		
 		return teamDB.listAll();
+	}
+	
+	private static List<Team> findTeamByName(String teamName) {
+		List<Team> byTeamName = teamDB.findByTeamName(teamName);
+		
+		return byTeamName;
 	}
 	
 	public static void addTeams(TeamDB teamDB){
@@ -88,7 +97,10 @@ public class TeamModule {
 		Team team2 = new Team("Galatasaray",1,new ArrayList<>(),"Istanbul","RAMS Park",10_000_000.0,25_000_000.0);
 		Team team3 = new Team("Besiktas",1,new ArrayList<>(),"Istanbul","Tupras Stadyumu",10_000_000.0,25_000_000.0);
 		Team team4 = new Team("Trabzonspor",1,new ArrayList<>(),"Trabzon","Papara Park",8_000_000.0,22_000_000.0);
-		
+		Team team5 = new Team("Basaksehir FK",1,new ArrayList<>(),"Basaksehir/Istanbul"," Basaksehir Fatih Terim Stadyumu",10_000_000.0,15_000_000.0);
+		Team team6 = new Team("Caykur Rizespor",1,new ArrayList<>(),"Gündogdu/Rize","Caykur Didi Stadyumu",5_000_000.0,10_000_000.0);
+		Team team7 = new Team("Samsunspor",1,new ArrayList<>(),"Canik/Samsun","19 Mayıs Stadyumu",3_000_000.0,5_000_000.0);
+		Team team8 = new Team("Kayserispor",1,new ArrayList<>(),"Kayseri","Kayseri Kadir Has Sehir Stadyumu",1_000_000.0,2_000_000.0);
 		Team team9= new Team("Eyupspor",1,new ArrayList<>(),"Istanbul","Arda Turan Stadyumu",20_0000_000d,30_000_000d);
 		Team team10= new Team("Antalyaspor",1,new ArrayList<>(),"Antalya","Antalya Sehir Stadi",30_0000_000d,40_000_000d);
 		Team team11= new Team("Adanaspor",1,new ArrayList<>(),"Adana","Adana Fatih Terim Stadyumu",35_0000_000d,50_000_000d);
@@ -105,7 +117,10 @@ public class TeamModule {
 		teamDB.save(team2);
 		teamDB.save(team3);
 		teamDB.save(team4);
-		
+		teamDB.save(team5);
+		teamDB.save(team6);
+		teamDB.save(team7);
+		teamDB.save(team8);
 		teamDB.save(team9);
 		teamDB.save(team10);
 		teamDB.save(team11);
