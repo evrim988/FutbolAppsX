@@ -21,7 +21,7 @@ public class TeamDB extends DatabaseManager<Team> {
 	
 	public Optional<Team> findByName(String teamName) {
 		for (Team team : veriListesi) {
-			if (team.getTeamName().equals(teamName)) {
+			if (team.getTeamName().equalsIgnoreCase(teamName)) {
 				return Optional.of(team);
 			}
 		}

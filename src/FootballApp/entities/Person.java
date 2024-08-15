@@ -1,7 +1,7 @@
 package FootballApp.entities;
 
 public class Person extends BaseEntity {
-	private static Integer personCounter=0;
+	
 	
 	private String personName;
 	private String surName;
@@ -10,11 +10,11 @@ public class Person extends BaseEntity {
 	
 	
 	public Person(Integer id) {
-		super(++personCounter);
+		super(++id);
     }
 	
 	public Person(Integer id, String name, String surName, Integer age, String nationality) {
-		super(++personCounter);
+		super(++id);
 		this.personName = name;
         this.surName = surName;
         this.personAge = age;

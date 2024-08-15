@@ -17,7 +17,7 @@ public class TeamModule {
 	public static void teamMenu() {
 		int userInput = -1;
 		
-		System.out.println("\n---Welcome---");
+		
 		do {
 			System.out.println("1-List of Teams");
 			System.out.println("2-Find Team by ID");
@@ -43,7 +43,7 @@ public class TeamModule {
 			case 1: {
 				System.out.println("List of Teams");
 				listOfTeams();  // Takım ve oyuncu ID'lerini listeleyen metodu çağır
-				playerListByID(); // Takım ID'sine göre oyuncuları listeleyen metodu çağır
+				getTeamDetails(); // Takım ID'sine göre oyuncuları listeleyen metodu çağır
 				break;
 			}
 			
@@ -59,9 +59,11 @@ public class TeamModule {
 			case 3: {
 				System.out.println("Enter the Team Name: ");
 				String teamName = sc.nextLine();
+				
 				List<Team> byTeamName = DataGenerator.teamDB.findByTeamName(teamName);
 				if (byTeamName.isEmpty()) {
 					System.out.println("Team not found!");
+					return;
 				}
 				byTeamName.stream().map(team -> "TeamID: " + team.getId() + " TeamName: " + team.getTeamName()).forEach(team -> {
 					System.out.println(team);
@@ -92,9 +94,16 @@ public class TeamModule {
 		}
 	}
 	
-	public static void playerListByID() {
-		System.out.println("Which team do you want to select? Please enter the Team ID: ");
+	public static void getTeamDetails() {
+		System.out.println("Which team do you want to select? Please enter the Team ID: (For Main Menu=0)");
 		Integer teamID = sc.nextInt();
+		if(teamID==0){
+			return;
+		}
+		Optional<Team> teamByID = DataGenerator.teamDB.findByID(teamID);
+		if (teamByID.isPresent()) {
+			System.out.println(teamByID.get());
+		}
 		List<Player> players = DataGenerator.playerDB.findByTeamID(teamID);
 		if (players.isEmpty()) {
 			System.out.println("No players found for this team.");
