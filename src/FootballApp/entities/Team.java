@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Team extends BaseEntity {
 	private static Integer teamCounter=0;
-	
+	private int counter;
 	private String teamName;
 	private List<Integer> teamPlayerIDList;
 	private String teamLocation;
@@ -25,6 +25,7 @@ public class Team extends BaseEntity {
 		this.stadiumName = stadiumName;
 		this.transferBudget = transferBudget;
 		this.wageBudget = wageBudget;
+		this.counter = ++counter;
 	}
 
 	public void addPlayerId(Integer playerId) {

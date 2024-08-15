@@ -42,4 +42,15 @@ public class PlayerDB extends DatabaseManager<Player> {
         }
         return playerList;
 	}
+	
+	
+	public List<Player> findByTeamID(Integer teamID) {
+		List<Player> foundPlayers = new ArrayList<>();
+        for (Player player : veriListesi) {
+            if (player.getCurrentTeamID() == teamID) {
+                foundPlayers.add(player);
+            }
+        }
+        return foundPlayers;
+	}
 }
