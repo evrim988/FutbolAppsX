@@ -27,8 +27,12 @@ public class Team extends BaseEntity {
 		this.wageBudget = wageBudget;
 	}
 
+	public void addPlayerId(Integer playerId) {
+		this.teamPlayerIDList.add(playerId);
+	}
 
-	
+
+
 	public String getTeamName() {
 		return teamName;
 	}

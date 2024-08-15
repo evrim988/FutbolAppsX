@@ -44,7 +44,12 @@ public class Player extends Person {
 //		Optional<Team> team = db.findByID(currentTeamID);
 //		return team.map(Team::getTeamName).orElse("Free Agent");
 //	}
-	
+
+
+	public Integer getCurrentTeamID() {
+		return currentTeamID;
+	}
+
 	public Integer getPlayerOverallRating() {
 		return playerOverallRating;
 	}

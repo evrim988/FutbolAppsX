@@ -1,8 +1,10 @@
 package FootballApp.modules;
 
 import FootballApp.databases.ManagerDB;
+import FootballApp.databases.PlayerDB;
 import FootballApp.databases.TeamDB;
 import FootballApp.entities.Manager;
+import FootballApp.entities.Player;
 import FootballApp.entities.Team;
 import FootballApp.utility.DataGenerator;
 import FootballApp.utility.DatabaseManager;
@@ -12,6 +14,7 @@ import java.util.*;
 
 public class TeamModule {
 	static TeamDB teamDB = new TeamDB();
+	static PlayerDB playerDB = new PlayerDB();
 	static Scanner sc = new Scanner(System.in);
 	
 	public static void teamMenu() {
@@ -46,9 +49,10 @@ public class TeamModule {
 			case 1: {
 				System.out.println("List of Teams");
 				List<Team> teams = DataGenerator.teamDB.listAll();
-				teams.stream().map(team -> "TeamID: "+team.getId()+ " TeamName: "+team.getTeamName()).forEach(team-> {
+				/*teams.stream().map(team -> "TeamID: "+team.getId()+ " TeamName: "+team.getTeamName()).forEach(team-> {
 					System.out.println(team);
-				});
+				});*/
+				teams.forEach(System.out::println);
 				break;
 			}
 			
@@ -89,6 +93,9 @@ public class TeamModule {
 		}
 	}
 	
-	
+	public void playerListByID(){
+
+	}
+
 
 }
