@@ -6,7 +6,6 @@ public class Team extends BaseEntity {
 	private static Integer teamCounter=0;
 	
 	private String teamName;
-	private Integer currentLeagueID;
 	private List<Integer> teamPlayerIDList;
 	private String teamLocation;
 	private Double transferBudget;
@@ -17,17 +16,18 @@ public class Team extends BaseEntity {
 		super(++teamCounter);
 	}
 	
-	public Team(String teamName, Integer currentLeagueID, List<Integer> teamPlayerIDList, String teamLocation,
+	public Team(String teamName, List<Integer> teamPlayerIDList, String teamLocation,
 	            String stadiumName, Double transferBudget, Double wageBudget) {
 		super(++teamCounter);
 		this.teamName = teamName;
-		this.currentLeagueID = currentLeagueID;
 		this.teamPlayerIDList = teamPlayerIDList;
 		this.teamLocation = teamLocation;
 		this.stadiumName = stadiumName;
 		this.transferBudget = transferBudget;
 		this.wageBudget = wageBudget;
 	}
+
+
 	
 	public String getTeamName() {
 		return teamName;
@@ -54,14 +54,7 @@ public class Team extends BaseEntity {
 		this.wageBudget = wageBudget;
 	}
 	
-	public Integer getCurrentLeagueID() {
-		return currentLeagueID;
-	}
-	
-	public void setCurrentLeagueID(Integer currentLeagueID) {
-		this.currentLeagueID = currentLeagueID;
-	}
-	
+
 	public List<Integer> getTeamPlayerIDList() {
 		return teamPlayerIDList;
 	}
@@ -91,7 +84,6 @@ public class Team extends BaseEntity {
 		return "Team "
 				+ "ID: " + getId()
 				+ ", Name=" + getTeamName()
-				+ ", TeamLeagueID=" + getCurrentLeagueID()
 				+ ", Location=" + getTeamLocation()
 				+ ", Stadium=" + getStadiumName()
 				+ ", TransferBudget=" + getTransferBudget()

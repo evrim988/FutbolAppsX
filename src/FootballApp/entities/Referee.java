@@ -7,8 +7,8 @@ public class Referee extends Person {
 		super(++refereeCounter);
 	}
 	
-	public Referee(String name, Integer age, String nationality) {
-		super(++refereeCounter, name, age, nationality);
+	public Referee(String name, String surName, Integer age, String nationality) {
+		super(++refereeCounter, name, surName, age, nationality);
 	}
 	
 	@Override

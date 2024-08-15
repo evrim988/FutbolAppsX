@@ -12,8 +12,8 @@ public class Manager extends Person {
 		this.currentTeamID=-1; //takim yoksa -1
 	}
 	
-	public Manager(String name, Integer age, String nationality, String managerUserName, String managerPassword) {
-		super(++managerCounter, name, age, nationality);
+	public Manager(String name, String surName, Integer age, String nationality, String managerUserName, String managerPassword) {
+		super(++managerCounter, name, surName, age, nationality);
 		this.managerUserName = managerUserName;
 		this.managerPassword = managerPassword;
 		this.currentTeamID=-1;

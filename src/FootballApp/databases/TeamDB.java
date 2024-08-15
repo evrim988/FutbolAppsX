@@ -35,7 +35,7 @@ public class TeamDB extends DatabaseManager<Team> {
 	public List<Team> findByTeamName(String teamName) {
 		List<Team> foundTeams = new ArrayList<>();
 		for (Team team : veriListesi) {
-			if (team.getTeamName().contains(teamName)) {
+			if (team.getTeamName().toLowerCase().contains(teamName.toLowerCase())) {
 				foundTeams.add(team);
 				
 			}

@@ -23,9 +23,9 @@ public class Player extends Person {
 		super(++playerCounter);
 	}
 	
-	public Player(String name, Integer age, String nationality,TechnicalAttributes technicalAttributes,
+	public Player(String name, String surName, Integer age, String nationality, TechnicalAttributes technicalAttributes,
 	              Integer teamID, Double playerValue, Double playerWage, EPosition EplayersPosition) {
-		super(++playerCounter,name,age,nationality);
+		super(++playerCounter,name,surName,age,nationality);
 		this.currentTeamID=teamID;
 		this.playerValue = playerValue;
 		this.playerWage = playerWage;
@@ -90,6 +90,7 @@ public class Player extends Person {
 		return "Player"
 				+ " ID: " + getId()
 				+ ", Name=" + getName()
+				+ ", SurName=" + getSurName()
 				+ ", Age=" + getAge()
 				+ ", Nationality=" + getNationality()
 				+ ", CurrentTeamID=" + currentTeamID

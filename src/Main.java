@@ -3,18 +3,20 @@ import FootballApp.databases.PlayerDB;
 import FootballApp.databases.TeamDB;
 import FootballApp.entities.Team;
 import FootballApp.modules.TeamModule;
+import FootballApp.utility.DataGenerator;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
 	static Scanner sc = new Scanner(System.in);
-	static PlayerDB playerDB = new PlayerDB();
-	static TeamDB teamDB = new TeamDB();
-	static ManagerDB managerDB = new ManagerDB();
+
+
 	public static void main(String[] args) {
-		
+		DataGenerator generator = new DataGenerator();
+		generator.initialize();
+
 		TeamModule.teamMenu();
-		
+
 	}
 }
