@@ -1,6 +1,6 @@
 package FootballApp.modules;
 
-
+import FootballApp.databases.PlayerDB;
 import FootballApp.entities.Player;
 import FootballApp.entities.Team;
 import FootballApp.utility.DataGenerator;
@@ -15,121 +15,119 @@ public class PlayerModule {
 	static Scanner sc = new Scanner(System.in);
 	
 	public static void playerMenu() {
-		int userInput = -1;
-		
+		int userInput;
 		do {
+			userInput = playerMenuEntry();
+			playerMenuSelection(userInput);
+		} while (userInput != 0);
+	}
+	
+	private static int playerMenuEntry() {
+		int userInput = -1;
+		boolean validInput = false;
+		
+		while (!validInput) {
 			System.out.println("1-List of all Player ID's by Team");
 			System.out.println("2-Find Player by ID");
 			System.out.println("3-Find Player by Name");
 			System.out.println("4-Find Player by Team");
-			System.out.println("0-Exit");
+			System.out.println("0-Main Menu");
 			System.out.print("Selection: ");
 			try {
 				userInput = sc.nextInt();
+				sc.nextLine();
+				if (userInput >= 0 && userInput <= 4) {
+					validInput = true;
+				} else {
+					System.out.println("Please enter a valid option!");
+				}
 			} catch (InputMismatchException e) {
 				System.out.println("\nPlease enter a numeric value!");
-				continue;
-			} finally {
-				sc.nextLine();
+				sc.next();
 			}
-			menuFunctions(userInput);
-			
-		} while (userInput != 0);
-		
+		}
+		return userInput;
 	}
 	
-	private static void menuFunctions(int userInput) {
+	private static void playerMenuSelection(int userInput) {
 		switch (userInput) {
-			case 1: {
-				System.out.println("List of all Player ID's by Team");
-				listOfPlayers();  // Takım ve oyuncu ID'lerini listeleyen metodu çağır
-				getPlayerDetails(); // Takım ID'sine göre oyuncuları listeleyen metodu çağır
-				break;
-			}
-			
-			case 2: {
-				listPlayerByID();
-				break;
-			}
-			case 3: {
-				listPlayerByName();
-				break;
-			}
-			case 4: {
-				listPlayerByTeam();
-				break;
-			}
-			case 0: {
-				System.out.println("Have a nice day!");
-				break;
-			}
-			default:
-				System.out.println("Please enter a valid value!");
+			case 1 -> displayPlayersByTeam();
+			case 2 -> displayPlayerByID();
+			case 3 -> displayPlayerByName();
+			case 4 -> displayPlayersByTeamName();
+			case 0 -> System.out.println("Returning to Main Menu...");
+			default -> System.out.println("Please enter a valid value!");
 		}
 	}
 	
-	private static void listPlayerByTeam() {
-		System.out.println("Enter a Team Name: (Return=0)");
-		String teamName = sc.nextLine();
-		if(teamName.equalsIgnoreCase("0")){
+	private static void displayPlayersByTeam() {
+		System.out.println("List of all Player ID's by Team");
+		List<Team> teams = DataGenerator.teamDB.listAll();
+		teams.forEach(team -> {
+			System.out.println("Team ID: " + team.getId() + ", Team Name: " + team.getTeamName());
+			System.out.println("Team Players ID List: " + team.getTeamPlayerIDList());
+		});
+		displayPlayerDetails();
+	}
+	
+	private static void displayPlayerByID() {
+		int size = DataGenerator.playerDB.listAll().size();
+		System.out.println("Enter a Player ID 1-"+size+": 0=Back to Player Menu");
+		Integer playerID = sc.nextInt();
+		sc.nextLine();
+		if (playerID == 0) {
 			return;
 		}
-		List<Player> byTeamName = DataGenerator.playerDB.findByTeamName(teamName);
-		for (Player player : byTeamName) {
-			System.out.println(player);
+		Optional<Player> playerByID = DataGenerator.playerDB.findByID(playerID);
+		if (playerByID.isPresent()) {
+			System.out.println(playerByID.get());
+		} else {
+			System.out.println("Player not found!");
 		}
 	}
 	
-	private static void listPlayerByName() {
-		System.out.println("Enter a Player Name: (Return=0)");
+	private static void displayPlayerByName() {
+		System.out.println("Enter a Player Name: 0=Back to Player Menu");
 		String playerName = sc.nextLine();
+		if (playerName.equalsIgnoreCase("0")) {
+			return;
+		}
 		List<Player> byPlayerName = DataGenerator.playerDB.findByPlayerName(playerName);
 		if (byPlayerName.isEmpty()) {
 			System.out.println("Player not found!");
 			return;
 		}
-		byPlayerName.stream().map(player -> "PlayerID: " + player.getId() + " PlayerNameSurname: " + player.getName()+" "+player.getSurName() ).forEach(player -> {
-			System.out.println(player);
-		});
-		System.out.println("Enter the Player ID that you want to see by details: ");
-		Integer playerID = sc.nextInt();
-		Optional<Player> playerByID = DataGenerator.playerDB.findByID(playerID);
-		if (playerByID.isPresent()) {
-			System.out.println(playerByID.get());
-		}
+		byPlayerName.forEach(player -> System.out.println("PlayerID: " + player.getId() + " PlayerNameSurname: " + player.getName() + " " + player.getSurName()));
+		displayPlayerDetails();
 	}
 	
-	private static void listPlayerByID() {
-		System.out.println("Enter a Player ID: (Return=0)");
-		Integer playerID = sc.nextInt();
-		if(playerID==0){
+	private static void displayPlayersByTeamName() {
+		System.out.println("Enter a Team Name: 0=Back to Player Menu");
+		String teamName = sc.nextLine();
+		if (teamName.equalsIgnoreCase("0")) {
 			return;
 		}
-		Optional<Player> playerByID = DataGenerator.playerDB.findByID(playerID);
-		if (playerByID.isPresent()) {
-			System.out.println(playerByID.get());
+		List<Player> byTeamName = DataGenerator.playerDB.findByTeamName(teamName);
+		if (byTeamName.isEmpty()) {
+			return;
 		}
-		else{
-			System.out.println("Player not found!");
-		}
+		
+		byTeamName.forEach(System.out::println);
 	}
 	
-	public static void listOfPlayers() {
-		List<Team> teams = DataGenerator.teamDB.listAll();
-		for (Team team : teams) {
-			System.out.println("Team ID: " + team.getId() + ", Team Name: " + team.getTeamName());
-			System.out.println("Team Players ID List: " + team.getTeamPlayerIDList());
-		}
-	}
-	public static void getPlayerDetails() {
-		System.out.println("Which player do you want to select? Please enter the Player ID: (Return=0)");
+	private static void displayPlayerDetails() {
+		System.out.println("Which player do you want to select? Please enter the Player ID: 0=Back to Player Menu");
 		Integer playerID = sc.nextInt();
-		if(playerID==0){
+		sc.nextLine(); // consume newline
+		if (playerID == 0) {
 			return;
 		}
 		Optional<Player> player = DataGenerator.playerDB.findByID(playerID);
 		if (player.isPresent()) {
+			System.out.println("Player Details: ");
 			System.out.println(player.get());
+		} else {
+			System.out.println("Player not found!");
 		}
-		}
+	}
 }

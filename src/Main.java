@@ -3,6 +3,7 @@ import FootballApp.databases.PlayerDB;
 import FootballApp.databases.TeamDB;
 import FootballApp.entities.Player;
 import FootballApp.entities.Team;
+import FootballApp.modules.Menu;
 import FootballApp.modules.PlayerModule;
 import FootballApp.modules.TeamModule;
 import FootballApp.utility.DataGenerator;
@@ -22,9 +23,7 @@ public class Main {
 		DataGenerator generator = new DataGenerator();
 		generator.initialize();
 //		PlayerModule.playerMenu();
-		TeamModule.teamMenu();
-
-
-
+//		TeamModule.startTeamMenu();
+		Menu.startMenu();
 	}
 }

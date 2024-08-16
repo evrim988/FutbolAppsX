@@ -69,24 +69,23 @@ public class PlayerDB extends DatabaseManager<Player> {
 	
 	public List<Player> findByTeamName(String teamName) {
 		List<Player> foundPlayers = new ArrayList<>();
-		List<Integer> teamPlayerIDList = null;
-		try {
-			teamPlayerIDList = DataGenerator.teamDB.findByName(teamName).get().getTeamPlayerIDList();
-		}
-		catch (NoSuchElementException e) {
+		
+		Optional<Team> teamOpt = DataGenerator.teamDB.findByName(teamName);
+		
+		if (teamOpt.isEmpty()) {
 			System.out.println("Cannot Find the Team! \"" + teamName + "\" Please Enter its full name");
+			return foundPlayers;  // Return an empty list if the team is not found
 		}
 		
-		if (teamPlayerIDList != null) {
-			for (Integer playerID : teamPlayerIDList) {
-				Optional<Player> byID = DataGenerator.playerDB.findByID(playerID);
-				if (byID.isPresent()) {
-					foundPlayers.add(byID.get());
-				}
-			}
+		List<Integer> teamPlayerIDList = teamOpt.get().getTeamPlayerIDList();
+		
+		for (Integer playerID : teamPlayerIDList) {
+			Optional<Player> byID = DataGenerator.playerDB.findByID(playerID);
+			byID.ifPresent(foundPlayers::add);
 		}
 		
 		return foundPlayers;
 	}
+	
 	
 }

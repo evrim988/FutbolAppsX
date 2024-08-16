@@ -14,100 +14,113 @@ public class TeamModule {
 	static TeamDB teamDB = new TeamDB();
 	static Scanner sc = new Scanner(System.in);
 	
-	public static void teamMenu() {
-		int userInput = -1;
-		
-		
+	public static void startTeamMenu() {
+		int userInput;
 		do {
+			userInput = teamMenuEntry();
+			teamMenuSelection(userInput);
+		} while (userInput != 0);
+	}
+	
+	private static int teamMenuEntry() {
+		int userInput=-1;
+		boolean validInput = false;
+		
+		while(!validInput) {
 			System.out.println("1-List of Teams");
 			System.out.println("2-Find Team by ID");
 			System.out.println("3-Find Team by Name");
-			System.out.println("0-Exit");
+			System.out.println("0-Main Menu");
 			System.out.print("Selection: ");
 			try {
 				userInput = sc.nextInt();
+				sc.nextLine();
+				if(userInput >= 0 && userInput <= 3) {
+					validInput = true;
+				}
+				else {
+					System.out.println("Please enter a valid option!");
+				}
 			} catch (InputMismatchException e) {
 				System.out.println("\nPlease enter a numeric value!");
-				continue;
-			} finally {
-				sc.nextLine();
+				sc.next();
 			}
-			menuFunctions(userInput);
-			
-		} while (userInput != 0);
-		
+		}
+		return userInput;
 	}
 	
-	private static void menuFunctions(int userInput) {
+	private static void teamMenuSelection(int userInput) {
 		switch (userInput) {
-			case 1: {
-				System.out.println("List of Teams");
-				listOfTeams();  // Takım ve oyuncu ID'lerini listeleyen metodu çağır
-				getTeamDetails(); // Takım ID'sine göre oyuncuları listeleyen metodu çağır
-				break;
-			}
-			
-			case 2: {
-				System.out.println("Enter Team ID: ");
-				Integer teamID = sc.nextInt();
-				Optional<Team> teamByID = DataGenerator.teamDB.findByID(teamID);
-				if (teamByID.isPresent()) {
-					System.out.println(teamByID.get());
-				}
-				break;
-			}
-			case 3: {
-				System.out.println("Enter the Team Name: ");
-				String teamName = sc.nextLine();
-				
-				List<Team> byTeamName = DataGenerator.teamDB.findByTeamName(teamName);
-				if (byTeamName.isEmpty()) {
-					System.out.println("Team not found!");
-					return;
-				}
-				byTeamName.stream().map(team -> "TeamID: " + team.getId() + " TeamName: " + team.getTeamName()).forEach(team -> {
-					System.out.println(team);
-				});
-				System.out.println("Enter the Team ID that you want to see by details: ");
-				Integer teamID = sc.nextInt();
-				Optional<Team> teamByID = DataGenerator.teamDB.findByID(teamID);
-				if (teamByID.isPresent()) {
-					System.out.println(teamByID.get());
-				}
-				break;
-			}
-			
-			case 0: {
-				System.out.println("Have a nice day!");
-				break;
-			}
-			default:
-				System.out.println("Please enter a valid value!");
+			case 1 -> displayTeams();
+			case 2 -> displayTeamByID();
+			case 3 -> displayTeamByName();
+			case 0 -> System.out.println("Returning to Main Menu...");
+			default-> System.out.println("Please enter a valid value!");
 		}
 	}
 	
-	public static void listOfTeams() {
+	private static void displayTeamByName() {
+		System.out.println("Enter the Team Name: 0=Back to Team Menu");
+		String teamName = sc.nextLine();
+		
+		List<Team> byTeamName = DataGenerator.teamDB.findByTeamName(teamName);
+		if (byTeamName.isEmpty()) {
+			if (teamName.equalsIgnoreCase("0")) {
+                return;
+            }
+			System.out.println("Team not found!");
+			return;
+		}
+		byTeamName.forEach(team -> System.out.println("TeamID: " + team.getId() + " TeamName: " + team.getTeamName()));
+		displayTeamDetails();
+	}
+	
+	private static void displayTeamByID() {
+		System.out.println("Enter Team ID: 0=Back to Team Menu");
+		Integer teamID = sc.nextInt();
+		sc.nextLine();
+		Optional<Team> teamByID = DataGenerator.teamDB.findByID(teamID);
+		if (teamByID.isPresent()) {
+			System.out.println(teamByID.get());
+		}
+		else {
+			if (teamID == 0) {
+				return;
+			}
+			System.out.println("Team not found!");
+		}
+	}
+	
+	public static void displayTeams() {
+		System.out.println("List of Teams");
 		List<Team> teams = DataGenerator.teamDB.listAll();
-		for (Team team : teams) {
+		teams.forEach(team -> {
 			System.out.println("Team ID: " + team.getId() + ", Team Name: " + team.getTeamName());
 			System.out.println("Team Players ID List: " + team.getTeamPlayerIDList());
-		}
+		});
+		displayTeamDetails();
 	}
 	
-	public static void getTeamDetails() {
-		System.out.println("Which team do you want to select? Please enter the Team ID: (For Main Menu=0)");
+	public static void displayTeamDetails() {
+		System.out.println("Which team do you want to select? Please enter the Team ID: 0=Back to Team Menu");
 		Integer teamID = sc.nextInt();
 		if(teamID==0){
 			return;
 		}
 		Optional<Team> teamByID = DataGenerator.teamDB.findByID(teamID);
 		if (teamByID.isPresent()) {
+			System.out.println("Team Details:  ");
 			System.out.println(teamByID.get());
+		}
+		else {
+			System.out.println("There is no team by that ID.");
+			return;
 		}
 		List<Player> players = DataGenerator.playerDB.findByTeamID(teamID);
 		if (players.isEmpty()) {
 			System.out.println("No players found for this team.");
 		} else {
+			System.out.println("Team Players:  ");
 			players.forEach(System.out::println);
 		}
 	}

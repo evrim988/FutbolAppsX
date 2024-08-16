@@ -2,8 +2,10 @@ package FootballApp.databases;
 
 import FootballApp.entities.Manager;
 import FootballApp.entities.Player;
+import FootballApp.entities.Team;
 import FootballApp.utility.DatabaseManager;
 
+import java.util.List;
 import java.util.Optional;
 
 public class ManagerDB extends DatabaseManager<Manager> {
@@ -24,5 +26,9 @@ public class ManagerDB extends DatabaseManager<Manager> {
 			}
 		}
 		return Optional.empty();
+	}
+	
+	public List<Manager> listAll() {
+		return veriListesi;
 	}
 }

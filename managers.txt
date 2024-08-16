@@ -1,0 +1,20 @@
+Manager{id=2, name='Jose', age=61, nationality='Portekiz', managerUserName='mourinho', managerPassword='1234', currentTeamID=-1}
+Manager{id=3, name='Okan', age=50, nationality='Istanbul', managerUserName='okan', managerPassword='1234', currentTeamID=-1}
+Manager{id=4, name='Giovanni van', age=49, nationality='Hollanda', managerUserName='giovanni', managerPassword='1234', currentTeamID=-1}
+Manager{id=5, name='Abdullah', age=61, nationality='Istanbul', managerUserName='abdullah', managerPassword='1234', currentTeamID=-1}
+Manager{id=6, name='Cagdas', age=44, nationality='Istanbul', managerUserName='cagdas', managerPassword='6783', currentTeamID=-1}
+Manager{id=7, name='İlhan', age=47, nationality='Hatay', managerUserName='ilhan', managerPassword='5214', currentTeamID=-1}
+Manager{id=8, name='Thomas', age=50, nationality='Almanya', managerUserName='thomas', managerPassword='4325', currentTeamID=-1}
+Manager{id=9, name='Burak', age=39, nationality='Antalya', managerUserName='burak', managerPassword='3675', currentTeamID=-1}
+Manager{id=10, name='Arda', age=37, nationality='Turkiye', managerUserName='Arda', managerPassword='9999', currentTeamID=-1}
+Manager{id=11, name='Alex', age=46, nationality='Brazil', managerUserName='Alex', managerPassword='9876', currentTeamID=-1}
+Manager{id=12, name='Michael', age=40, nationality='Avustralia', managerUserName='Michi', managerPassword='5432', currentTeamID=-1}
+Manager{id=13, name='Fatih', age=46, nationality='Turkiye', managerUserName='Fatih', managerPassword='2468', currentTeamID=-1}
+Manager{id=14, name='Bülent', age=53, nationality='Turkiye', managerUserName='bulent', managerPassword='1234', currentTeamID=-1}
+Manager{id=15, name='Sami', age=46, nationality='Turkiye', managerUserName='sami', managerPassword='1234', currentTeamID=-1}
+Manager{id=16, name='Ali', age=40, nationality='Turkiye', managerUserName='ali', managerPassword='1234', currentTeamID=-1}
+Manager{id=17, name='Selcuk', age=39, nationality='Turkiye', managerUserName='selcuk', managerPassword='1234', currentTeamID=-1}
+Manager{id=18, name='Ozhan', age=39, nationality='Turkiye', managerUserName='ozhan', managerPassword='1234', currentTeamID=-1}
+Manager{id=19, name='Stanimir', age=57, nationality='Bulgaristan', managerUserName='stanimir', managerPassword='1234', currentTeamID=-1}
+Manager{id=20, name='Ismet', age=50, nationality='Turkiye', managerUserName='ismet', managerPassword='1234', currentTeamID=-1}
+Manager{id=21, name='Cihat', age=54, nationality='Turkiye', managerUserName='cihat', managerPassword='1234', currentTeamID=-1}
