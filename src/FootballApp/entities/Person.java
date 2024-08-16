@@ -10,11 +10,11 @@ public class Person extends BaseEntity {
 	
 	
 	public Person(Integer id) {
-		super(++id);
+		super(id);
     }
 	
 	public Person(Integer id, String name, String surName, Integer age, String nationality) {
-		super(++id);
+		super(id);
 		this.personName = name;
         this.surName = surName;
         this.personAge = age;

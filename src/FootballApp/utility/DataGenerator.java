@@ -115,26 +115,26 @@ public static void addTeams(TeamDB teamDB) {
     
     public static void addManager(ManagerDB managerDB) {
         List<Manager> managers = List.of(
-                new Manager("Jose", "Mourinho", 61, "Portekiz", "mourinho", "1234"),
-                new Manager("Okan", "Buruk", 50, "Istanbul", "okan", "1234"),
-                new Manager("Giovanni van", "Bronckhorst", 49, "Hollanda", "giovanni", "1234"),
-                new Manager("Abdullah", "Avci", 61, "Istanbul", "abdullah", "1234"),
-                new Manager("Cagdas", "Atan", 44, "Istanbul", "cagdas", "6783"),
-                new Manager("İlhan", "Palut", 47, "Hatay", "ilhan", "5214"),
-                new Manager("Thomas", "Reis", 50, "Almanya", "thomas", "4325"),
-                new Manager("Burak", "Yılmaz", 39, "Antalya", "burak", "3675"),
-                new Manager("Arda", "Turan", 37, "Turkiye", "Arda", "9999"),
-                new Manager("Alex", "DeSouza", 46, "Brazil", "Alex", "9876"),
-                new Manager("Michael", "Valkanis", 40, "Avustralia", "Michi", "5432"),
-                new Manager("Fatih", "Tekke", 46, "Turkiye", "Fatih", "2468"),
-                new Manager("Bülent", "Uygun", 53, "Turkiye", "bulent", "1234"),
-                new Manager("Sami", "Ugurlu", 46, "Turkiye", "sami", "1234"),
-                new Manager("Ali", "Camdali", 40, "Turkiye", "ali", "1234"),
-                new Manager("Selcuk", "Inan", 39, "Turkiye", "selcuk", "1234"),
-                new Manager("Ozhan", "Pulat", 39, "Turkiye", "ozhan", "1234"),
-                new Manager("Stanimir", "Stoilov", 57, "Bulgaristan", "stanimir", "1234"),
-                new Manager("Ismet", "Tasdemir", 50, "Turkiye", "ismet", "1234"),
-                new Manager("Cihat", "Arslan", 54, "Turkiye", "cihat", "1234")
+                new Manager(1,"Jose", "Mourinho", 61, "Portekiz", "mourinho", "1234"),
+                new Manager(2,"Okan", "Buruk", 50, "Istanbul", "okan", "1234"),
+                new Manager(3,"Giovanni van", "Bronckhorst", 49, "Hollanda", "giovanni", "1234"),
+                new Manager(4,"Abdullah", "Avci", 61, "Istanbul", "abdullah", "1234"),
+                new Manager(5,"Cagdas", "Atan", 44, "Istanbul", "cagdas", "6783"),
+                new Manager(6,"İlhan", "Palut", 47, "Hatay", "ilhan", "5214"),
+                new Manager(7,"Thomas", "Reis", 50, "Almanya", "thomas", "4325"),
+                new Manager(8,"Burak", "Yılmaz", 39, "Antalya", "burak", "3675"),
+                new Manager(9,"Arda", "Turan", 37, "Turkiye", "Arda", "9999"),
+                new Manager(10,"Alex", "DeSouza", 46, "Brazil", "Alex", "9876"),
+                new Manager(11,"Michael", "Valkanis", 40, "Avustralia", "Michi", "5432"),
+                new Manager(12,"Fatih", "Tekke", 46, "Turkiye", "Fatih", "2468"),
+                new Manager(13,"Bülent", "Uygun", 53, "Turkiye", "bulent", "1234"),
+                new Manager(14,"Sami", "Ugurlu", 46, "Turkiye", "sami", "1234"),
+                new Manager(15,"Ali", "Camdali", 40, "Turkiye", "ali", "1234"),
+                new Manager(16,"Selcuk", "Inan", 39, "Turkiye", "selcuk", "1234"),
+                new Manager(17,"Ozhan", "Pulat", 39, "Turkiye", "ozhan", "1234"),
+                new Manager(18,"Stanimir", "Stoilov", 57, "Bulgaristan", "stanimir", "1234"),
+                new Manager(19,"Ismet", "Tasdemir", 50, "Turkiye", "ismet", "1234"),
+                new Manager(20,"Cihat", "Arslan", 54, "Turkiye", "cihat", "1234")
         );
         
         managerDB.saveAll(managers);

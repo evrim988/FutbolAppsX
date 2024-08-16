@@ -20,12 +20,12 @@ public class Player extends Person {
 	private TechnicalAttributes playerTechnicalAttributes;
 	
 	public Player() {
-		super(playerCounter++);
+		super(++playerCounter);
 	}
 	
 	public Player(String name, String surName, Integer age, String nationality, TechnicalAttributes technicalAttributes,
 	              Integer teamID, Double playerValue, Double playerWage, EPosition EplayersPosition) {
-		super(playerCounter++,name,surName,age,nationality);
+		super(++playerCounter,name,surName,age,nationality);
 		this.currentTeamID=teamID;
 		this.playerValue = playerValue;
 		this.playerWage = playerWage;

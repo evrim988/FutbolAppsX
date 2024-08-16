@@ -1,6 +1,8 @@
 package FootballApp.modules;
 
 import FootballApp.databases.TeamDB;
+import FootballApp.entities.Manager;
+import FootballApp.modules.ManagerModule;
 import FootballApp.entities.Player;
 import FootballApp.entities.Team;
 import FootballApp.utility.DataGenerator;
@@ -51,7 +53,7 @@ public class TeamModule {
 	
 	private static void teamMenuSelection(int userInput) {
 		switch (userInput) {
-			case 1 -> displayTeams();
+			case 1 -> displayTeams(LogInModule.loggedManager);
 			case 2 -> displayTeamByID();
 			case 3 -> displayTeamByName();
 			case 0 -> System.out.println("Returning to Main Menu...");
@@ -91,12 +93,16 @@ public class TeamModule {
 		}
 	}
 	
-	public static void displayTeams() {
+	public static void displayTeams(Manager manager) {
 		System.out.println("List of Teams");
 		List<Team> teams = DataGenerator.teamDB.listAll();
+		Optional<Team> byID = DataGenerator.teamDB.findByID(manager.getCurrentTeamID());
+		if(byID.isPresent()) {
+			System.out.println(byID.get());
+		}
 		teams.forEach(team -> {
 			System.out.println("Team ID: " + team.getId() + ", Team Name: " + team.getTeamName());
-			System.out.println("Team Players ID List: " + team.getTeamPlayerIDList());
+//			System.out.println("Team Players ID List: " + team.getTeamPlayerIDList());
 		});
 		displayTeamDetails();
 	}

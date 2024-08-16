@@ -31,4 +31,13 @@ public class ManagerDB extends DatabaseManager<Manager> {
 	public List<Manager> listAll() {
 		return veriListesi;
 	}
+	
+	public Optional<Manager> findByUsernameAndPassword(String username, String password) {
+		for (Manager manager : veriListesi) {
+            if (manager.getManagerUserName().equals(username) && manager.getManagerPassword().equals(password)) {
+                return Optional.of(manager);
+            }
+        }
+        return Optional.empty();
+	}
 }

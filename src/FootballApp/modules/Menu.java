@@ -1,10 +1,20 @@
 package FootballApp.modules;
 
+import FootballApp.entities.Manager;
+import FootballApp.entities.Player;
+import FootballApp.utility.DataGenerator;
+
+import javax.xml.crypto.Data;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.InputMismatchException;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class Menu {
 	private static Scanner sc = new Scanner(System.in);
+	private static Manager loggedManager = null;
 	public static void startMenu() {
 		int userInput;
 		do {
@@ -14,18 +24,28 @@ public class Menu {
 	}
 	
 	private static int menuEntry() {
+		
 		int userInput=-1;
 		boolean validInput = false;
 		
 		while(!validInput) {
-			System.out.println("1-Team Menu");
-			System.out.println("2-Player Menu");
+			if(loggedManager == null)
+			System.out.println("1-Log In");
+			if(loggedManager != null) {
+				System.out.println("2-Team Menu");
+				System.out.println("3-Player Menu");
+				System.out.println("4-Manager Menu");
+			}
 			System.out.println("0-Exit");
 			System.out.print("Selection: ");
 			try {
 				userInput = sc.nextInt();
 				sc.nextLine();
-				if(userInput >= 0 && userInput <= 2) {
+				if (loggedManager == null && (userInput == 1 )) {
+					validInput = true;
+				} else if(loggedManager!= null && (userInput == 2 || userInput == 3 || userInput==4)){
+					validInput=true;
+				} else if(userInput == 0){
 					validInput = true;
 				}
 				else {
@@ -40,10 +60,13 @@ public class Menu {
 	}
 	private static void menuSelection(int userInput) {
 		switch (userInput) {
-			case 1 -> TeamModule.startTeamMenu();
-			case 2 -> PlayerModule.playerMenu();
+			case 1 -> loggedManager=LogInModule.managerLogIn();
+			case 2 -> TeamModule.startTeamMenu();
+			case 3 -> PlayerModule.playerMenu();
+			case 4 -> ManagerModule.startManagerMenu();
 			case 0 -> System.out.println("Have a nice day!");
 			default-> System.out.println("Please enter a valid value!");
 		}
 	}
+	
 }

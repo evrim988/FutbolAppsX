@@ -9,14 +9,13 @@ public class Manager extends Person {
 	
 	public Manager() {
 		super(++managerCounter);
-		this.currentTeamID=-1; //takim yoksa -1
 	}
 	
-	public Manager(String name, String surName, Integer age, String nationality, String managerUserName, String managerPassword) {
+	public Manager(Integer currentTeamID, String name, String surName, Integer age, String nationality, String managerUserName, String managerPassword) {
 		super(++managerCounter, name, surName, age, nationality);
 		this.managerUserName = managerUserName;
 		this.managerPassword = managerPassword;
-		this.currentTeamID=-1;
+		this.currentTeamID= currentTeamID;
 	}
 	
 	public String getManagerUserName() {
@@ -45,6 +44,6 @@ public class Manager extends Person {
 	
 	@Override
 	public String toString() {
-		return "Manager{" + "id=" + getId() + ", name='" + getName() + '\'' + ", age=" + getAge() + ", nationality='" + getNationality() + '\'' + ", managerUserName='" + getManagerUserName() + '\'' + ", managerPassword='" + getManagerPassword() + '\'' + ", currentTeamID=" + getCurrentTeamID() + '}';
+		return "Manager{" +"CurrenTeamId"+ getCurrentTeamID() + "id=" + getId() + ", name='" + getName() + '\'' + ", age=" + getAge() + ", nationality='" + getNationality() + '\'' + ", managerUserName='" + getManagerUserName() + '\'' + ", managerPassword='" + getManagerPassword() + '\'' + ", currentTeamID=" + getCurrentTeamID() + '}';
 	}
 }
