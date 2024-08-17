@@ -22,7 +22,7 @@ public class DataGenerator {
     public static TeamDB teamDB = new TeamDB();
     public static ManagerDB managerDB = new ManagerDB();
     public static PlayerDB playerDB = new PlayerDB();
-    static DecimalFormat df = new DecimalFormat("#.00");
+    static DecimalFormat df = new DecimalFormat("#,00");
     
     public void initialize() {
         
@@ -143,6 +143,7 @@ public static void addTeams(TeamDB teamDB) {
     
     public static void playerGenerator() {
         Random rand = new Random();
+
         List<String> names =
                 List.of("Ali", "Ahmet", "Baris", "Ceren", "Deniz", "Kemal", "Mert", "Burak", "Okan", "Emre", "Can", "Arda", "Ege", "Serkan", "Ömer", "Gökhan", "Bora", "Mustafa", "Melis", "Selin");
         List<String> surNames =
@@ -155,8 +156,8 @@ public static void addTeams(TeamDB teamDB) {
                 
                 for (int i = 0; i < 15; i++) {
                     Integer age = rand.nextInt(15, 35);
-                    double value = Double.parseDouble(df.format(100_000 + (rand.nextDouble() * 4_900_00)));
-                    double wage = Double.parseDouble(df.format(5_000 + (rand.nextDouble() * 3_000)));
+                    double value = (100_000 + (rand.nextDouble() * 4_900_00));
+                    double wage = (5_000 + (rand.nextDouble() * 3_000));
                     int positionIndex = rand.nextInt(positions.length);
                     String surName = surNames.get(rand.nextInt(surNames.size()));
                     EPosition position = positions[positionIndex];

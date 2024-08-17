@@ -5,11 +5,13 @@ import FootballApp.entities.attributes.TechnicalAttributes;
 import FootballApp.enums.EPosition;
 import FootballApp.utility.DatabaseManager;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class Player extends Person {
+	static DecimalFormat df = new DecimalFormat("#.00");
 	private static Integer playerCounter=0;
 	
 	private Integer playerOverallRating;
@@ -94,8 +96,8 @@ public class Player extends Person {
 //				+ ", CurrentTeamName=" + getCurrentTeamName(currentTeamID)
 				+ ", Position=" + getPlayersPosition()
 				+ ", OverallRating=" + getPlayerOverallRating()
-				+ ", Value=" + getPlayerValue()
-				+ ", Wage=" + getPlayerWage()
-				+ ", " + playerTechnicalAttributes;
+				+ ", Value=" + df.format(getPlayerValue())
+				+ " , Wage=" + df.format(getPlayerWage())
+				+ " , " + playerTechnicalAttributes;
 	}
 }
